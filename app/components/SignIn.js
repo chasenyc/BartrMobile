@@ -24,6 +24,7 @@ export default class SignIn extends Component {
         <View style={styles.columns}>
           <TextInput
             ref='UsernameInput'
+            maxLength={15}
             style={styles.defaultInput}
             autoCapitalize="none"
             autoCorrect={false}
@@ -32,6 +33,7 @@ export default class SignIn extends Component {
               this.setState({username: text.replace(/\s/g, '')});
             }}
             returnKeyType="next"
+            keyboardType='ascii-capable'
             onSubmitEditing={() => this._focusNextField('PasswordInput')}
             value={this.state.username} />
           <TextInput
