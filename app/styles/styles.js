@@ -8,14 +8,11 @@ export default StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    fontWeight: '500',
+    alignSelf: 'stretch',
   },
   defaultInput: {
     flex: 1,
@@ -28,11 +25,25 @@ export default StyleSheet.create({
     borderColor: '#000000',
     borderWidth: 1,
     borderStyle: 'solid',
-    width: 200,
+    borderRadius: 2,
+    alignSelf: 'stretch',
     padding: 10,
-    marginBottom: 10,
+    margin: 5,
   },
   columns: {
-    flexDirection: 'column'
-  }
+    flexDirection: 'column',
+    alignSelf: 'stretch',
+  },
+  basicButton: {
+    borderColor: '#000000',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderRadius: 5,
+    padding: 10,
+    margin: 5,
+    alignSelf: 'stretch',
+  },
+  buttonText: {
+    textAlign: 'center',
+  },
 });
