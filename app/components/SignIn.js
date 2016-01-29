@@ -19,15 +19,15 @@ export default class SignIn extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Bartr</Text>
+        <Text style={styles.welcome}>BARTR SPACE</Text>
 
         <View style={styles.columns}>
           <TextInput
-          autoFocus={true}
             ref='UsernameInput'
             style={styles.defaultInput}
             autoCapitalize="none"
             autoCorrect={false}
+            placeholder='username'
             onChangeText={(text) => {
               this.setState({username: text.replace(/\s/g, '')});
             }}
@@ -39,6 +39,7 @@ export default class SignIn extends Component {
             style={styles.defaultInput}
             password={true}
             returnKeyType="send"
+            placeholder='password'
             onChangeText={(text) => {
               this.setState({password: text});
             }}
@@ -46,16 +47,16 @@ export default class SignIn extends Component {
           />
           <TouchableHighlight
             style={styles.basicButton}
-            underlayColor='#BADA55'
+            underlayColor='#1A237E'
             onPress={this._onSignIn.bind(this)}>
-            <Text style={styles.buttonText}>Sign In</Text>
+            <Text style={styles.buttonText}>SIGN IN</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
-            style={styles.basicButton}
-            underlayColor='#BADA55'
+            style={[styles.basicButton, styles.redButton]}
+            underlayColor='#1A237E'
             onPress={this._onSignUp.bind(this)}>
-            <Text style={styles.buttonText}>Sign Up</Text>
+            <Text style={styles.buttonText}>SIGN UP</Text>
           </TouchableHighlight>
         </View>
       </View>

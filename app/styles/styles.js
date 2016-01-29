@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#C5CAE9',
   },
   welcome: {
     fontSize: 30,
@@ -13,19 +13,18 @@ export default StyleSheet.create({
     margin: 10,
     fontWeight: '500',
     alignSelf: 'stretch',
+    color: '#1A237E',
+    fontWeight: '900'
   },
   defaultInput: {
     flex: 1,
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
+    color: '#1A237E',
     height: 50,
     padding: 0,
     backgroundColor: '#fff',
     borderColor: '#000000',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderRadius: 2,
     alignSelf: 'stretch',
     padding: 10,
     margin: 5,
@@ -36,14 +35,17 @@ export default StyleSheet.create({
   },
   basicButton: {
     borderColor: '#000000',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderRadius: 5,
+    backgroundColor: '#7986CB',
     padding: 10,
     margin: 5,
     alignSelf: 'stretch',
   },
+  redButton: {
+    backgroundColor: '#E57373',
+  },
   buttonText: {
     textAlign: 'center',
+    color: '#fff',
+    fontWeight: '700'
   },
 });
