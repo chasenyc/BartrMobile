@@ -19,7 +19,7 @@ export default class SignIn extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>BARTR SPACE</Text>
+        <Text style={styles.welcome}>BARTR</Text>
 
         <View style={styles.columns}>
           <TextInput
@@ -30,7 +30,7 @@ export default class SignIn extends Component {
             autoCorrect={false}
             placeholder='username'
             onChangeText={(text) => {
-              this.setState({username: text.replace(/\s/g, '')});
+              this.setState({username: text.replace(/\W/g, '')});
             }}
             returnKeyType="next"
             keyboardType='ascii-capable'
@@ -56,7 +56,7 @@ export default class SignIn extends Component {
 
           <TouchableHighlight
             style={[styles.basicButton, styles.redButton]}
-            underlayColor='#1A237E'
+            underlayColor='#B71C1C'
             onPress={this._onSignUp.bind(this)}>
             <Text style={styles.buttonText}>SIGN UP</Text>
           </TouchableHighlight>
@@ -71,9 +71,5 @@ export default class SignIn extends Component {
 
   _onSignUp() {
     console.log('SIGN UP REQUEST: ', this.state);
-  }
-
-  _focusNextField(nextField) {
-    this.refs[nextField].focus()
   }
 }
