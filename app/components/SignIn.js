@@ -16,17 +16,35 @@ export default class SignIn extends Component {
     };
   }
 
-  onChange(event) {
-    console.log(event);
-  }
-
   render() {
     return (
       <View style={styles.container}>
-        <Text>SIGN IN</Text>
+        <Text style={styles.welcome}>SIGN IN</Text>
 
-        <TextInput onChangeText={ this.onChange.bind(this) }/>
+        <View style={styles.columns}>
+          <TextInput
+            style={styles.defaultInput}
+            autoCapitalize="none"
+            onChangeText={(text) => {
+              this.setState({username: text.replace(/\s/g, '')});
+            }}
+            value={this.state.username} />
+          <TextInput
+            style={styles.defaultInput}
+            password={true}
+            onChangeText={(text) => {
+              this.setState({password: text});
+            }}
+          />
+          <TouchableHighlight onPress={this._onSubmit.bind(this)}>
+            <Text style={styles.welcome}>Submit</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
+  }
+
+  _onSubmit() {
+    console.log('POST REQUEST: ', this.state);
   }
 }
