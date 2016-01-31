@@ -72,4 +72,8 @@ export default class SignIn extends Component {
   _onSignUp() {
     console.log('SIGN UP REQUEST: ', this.state);
   }
+
+  _focusNextField(nextField) {
+    this.refs[nextField].focus()
+  }
 }
