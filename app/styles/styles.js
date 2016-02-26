@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#C5CAE9',
+    backgroundColor: '#E0F7FA',
   },
   welcome: {
     fontSize: 30,
@@ -13,7 +13,7 @@ export default StyleSheet.create({
     margin: 10,
     fontWeight: '500',
     alignSelf: 'stretch',
-    color: '#1A237E',
+    color: '#00E5FF',
     fontWeight: '900'
   },
   defaultInput: {
@@ -35,13 +35,13 @@ export default StyleSheet.create({
   },
   basicButton: {
     borderColor: '#000000',
-    backgroundColor: '#7986CB',
+    backgroundColor: '#00E5FF',
     padding: 10,
     margin: 5,
     alignSelf: 'stretch',
   },
-  redButton: {
-    backgroundColor: '#E57373',
+  highlightButton: {
+    backgroundColor: '#FFD740',
   },
   buttonText: {
     textAlign: 'center',

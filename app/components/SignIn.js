@@ -55,7 +55,7 @@ export default class SignIn extends Component {
           </TouchableHighlight>
 
           <TouchableHighlight
-            style={[styles.basicButton, styles.redButton]}
+            style={[styles.basicButton, styles.highlightButton]}
             underlayColor='#B71C1C'
             onPress={this._onSignUp.bind(this)}>
             <Text style={styles.buttonText}>SIGN UP</Text>
