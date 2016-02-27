@@ -6,6 +6,7 @@ import React, {
   TouchableHighlight
 } from 'react-native';
 import styles from '../styles/styles'
+import { fetchCurrentUser } from '../actions/actionCreators'
 export default class SignIn extends Component {
 
   constructor(props) {
@@ -66,7 +67,7 @@ export default class SignIn extends Component {
   }
 
   _onSignIn() {
-    console.log('SIGN IN REQUEST: ', this.state);
+    fetchCurrentUser()
   }
 
   _onSignUp() {

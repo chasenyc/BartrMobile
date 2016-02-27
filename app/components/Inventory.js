@@ -15,7 +15,6 @@ export default class Inventory extends Component {
   }
 
   render() {
-    console.log('cody ballz');
     debugger;
     return (
         <View >
