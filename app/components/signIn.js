@@ -6,6 +6,7 @@ import React, {
   TouchableHighlight
 } from 'react-native';
 import styles from '../styles/styles'
+import { fetchCurrentUser } from '../actions/actionCreators'
 export default class SignIn extends Component {
 
   constructor(props) {
@@ -45,32 +46,24 @@ export default class SignIn extends Component {
             onChangeText={(text) => {
               this.setState({password: text});
             }}
-            onSubmitEditing={this._onSignIn.bind(this)}
+            onSubmitEditing={this.props.signIn}
           />
           <TouchableHighlight
             style={styles.basicButton}
             underlayColor='#1A237E'
-            onPress={this._onSignIn.bind(this)}>
+            onPress={this.props.signIn}>
             <Text style={styles.buttonText}>SIGN IN</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={[styles.basicButton, styles.highlightButton]}
             underlayColor='#B71C1C'
-            onPress={this._onSignUp.bind(this)}>
+            onPress={this.props.signIn}>
             <Text style={styles.buttonText}>SIGN UP</Text>
           </TouchableHighlight>
         </View>
       </View>
     );
-  }
-
-  _onSignIn() {
-    console.log('SIGN IN REQUEST: ', this.state);
-  }
-
-  _onSignUp() {
-    console.log('SIGN UP REQUEST: ', this.state);
   }
 
   _focusNextField(nextField) {

@@ -6,9 +6,13 @@ const receiveCurrentUser = (current_user) => {
 
 export const fetchCurrentUser = () => {
   return dispatch => {
-    return $.ajax({ url: USERS_URL })
-    .then(data => {
-      dispatch(receiveCurrentUser(data))
-    })
+    fetch('http://www.ciderspot.com/api/ciders')
+      .then((response) => response.json())
+      .then((responseText) => {
+        dispatch(receiveCurrentUser(responseText));
+      })
+      .catch((error) => {
+        receiveCurrentUser();
+      });
   }
 }
