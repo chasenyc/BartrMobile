@@ -51,7 +51,7 @@ export default class SignIn extends Component {
           <TouchableHighlight
             style={styles.basicButton}
             underlayColor='#1A237E'
-            onPress={this._onSignIn.bind(this)}>
+            onPress={this.props.signIn}>
             <Text style={styles.buttonText}>SIGN IN</Text>
           </TouchableHighlight>
 
@@ -64,14 +64,6 @@ export default class SignIn extends Component {
         </View>
       </View>
     );
-  }
-
-  _onSignIn() {
-    fetchCurrentUser()
-  }
-
-  _onSignUp() {
-    console.log('SIGN UP REQUEST: ', this.state);
   }
 
   _focusNextField(nextField) {

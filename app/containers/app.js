@@ -16,7 +16,7 @@ import SignIn from '../components/signIn'
 class App extends Component {
   render() {
     const {
-      users
+      users, actions
     } = this.props
 
     return (
@@ -24,6 +24,7 @@ class App extends Component {
         initialRoute={{name: 'Sign In', index: 0}}
         renderScene={(route, navigator) =>
           <SignIn
+            signIn={actions.fetchCurrentUser}
             name={route.name}
             onForward={() => {
               var nextIndex = route.index + 1;
