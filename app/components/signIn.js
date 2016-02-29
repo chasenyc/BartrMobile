@@ -17,6 +17,18 @@ export default class SignIn extends Component {
     };
   }
 
+  signIn() {
+    this.props.signIn(this.state)
+  }
+
+  signUp() {
+    this.props.signUp({
+      username: this.state.username,
+      password: this.state.password,
+      location: this.props.location
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -51,14 +63,14 @@ export default class SignIn extends Component {
           <TouchableHighlight
             style={styles.basicButton}
             underlayColor='#1A237E'
-            onPress={this.props.signIn}>
+            onPress={this.signIn.bind(this)}>
             <Text style={styles.buttonText}>SIGN IN</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={[styles.basicButton, styles.highlightButton]}
             underlayColor='#B71C1C'
-            onPress={this.props.signIn}>
+            onPress={this.signUp.bind(this)}>
             <Text style={styles.buttonText}>SIGN UP</Text>
           </TouchableHighlight>
         </View>

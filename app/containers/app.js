@@ -14,6 +14,22 @@ import SignIn from '../components/signIn'
 
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: ''
+    };
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (location) => {
+        this.setState({location: JSON.stringify(location)})
+      }
+    )
+  }
+
   render() {
     const {
       users, actions
@@ -24,7 +40,9 @@ class App extends Component {
         initialRoute={{name: 'Sign In', index: 0}}
         renderScene={(route, navigator) =>
           <SignIn
-            signIn={actions.fetchCurrentUser}
+            {...this.state}
+            signIn={actions.signIn}
+            signUp={actions.signUp}
             name={route.name}
             onForward={() => {
               var nextIndex = route.index + 1;
