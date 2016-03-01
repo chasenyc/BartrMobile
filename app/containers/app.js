@@ -4,7 +4,8 @@ import React, {
   StyleSheet,
   Text,
   View,
-  Navigator
+  Navigator,
+  AsyncStorage
 } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -14,18 +15,44 @@ import SignIn from '../components/signIn'
 
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: ''
+    };
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (location) => {
+        this.setState({location: JSON.stringify(location)})
+      }
+    )
+    this._getToken()
+  }
+
+  componentWillReceiveProps() {
+    this._getToken()
+  }
+
   render() {
     const {
       users, actions
     } = this.props
 
     return (
+
       <Navigator
         initialRoute={{name: 'Sign In', index: 0}}
         renderScene={(route, navigator) =>
           <SignIn
-            signIn={actions.fetchCurrentUser}
+            {...this.state}
+            signIn={actions.signIn}
+            signUp={actions.signUp}
+            fetchCurrentUser={actions.fetchCurrentUser}
             name={route.name}
+            user={users}
             onForward={() => {
               var nextIndex = route.index + 1;
               navigator.push({
@@ -42,6 +69,13 @@ class App extends Component {
         }
       />
     )
+  }
+
+  _getToken() {
+    AsyncStorage.getItem('token')
+    .then((response) => {
+      this.setState({authToken: response})
+    })
   }
 }
 
