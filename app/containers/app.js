@@ -4,7 +4,8 @@ import React, {
   StyleSheet,
   Text,
   View,
-  Navigator
+  Navigator,
+  AsyncStorage
 } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -28,6 +29,11 @@ class App extends Component {
         this.setState({location: JSON.stringify(location)})
       }
     )
+    this._getToken()
+  }
+
+  componentWillReceiveProps() {
+    this._getToken()
   }
 
   render() {
@@ -63,6 +69,13 @@ class App extends Component {
         }
       />
     )
+  }
+
+  _getToken() {
+    AsyncStorage.getItem('token')
+    .then((response) => {
+      this.setState({authToken: response})
+    })
   }
 }
 

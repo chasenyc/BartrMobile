@@ -30,6 +30,10 @@ export default class SignIn extends Component {
     })
   }
 
+  fetchCurrentUser() {
+    this.props.fetchCurrentUser(this.props.authToken)
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -71,7 +75,7 @@ export default class SignIn extends Component {
           <TouchableHighlight
             style={[styles.basicButton, styles.highlightButton]}
             underlayColor='#B71C1C'
-            onPress={this.props.fetchCurrentUser}>
+            onPress={this.fetchCurrentUser.bind(this)}>
             <Text style={styles.buttonText}>SIGN UP</Text>
           </TouchableHighlight>
         </View>

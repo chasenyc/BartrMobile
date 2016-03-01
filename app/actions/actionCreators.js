@@ -6,13 +6,33 @@ const SESSION_URL = "/session"
 const USERS_URL = "/users"
 const SESSION_TOKEN = 'session_token'
 
+const myHeaders = new Headers ()
+var authToken;
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Accept", "application/json");
+
+const resetToken = () => {
+  AsyncStorage.getItem('token')
+  .then((response) => {
+    authToken = response
+  } )
+  .then(() => {
+    myHeaders.delete("Authorization")
+    myHeaders.append("Authorization", authToken);
+
+  })
+}
+
 const receiveCurrentUser = (current_user) => {
   return { type: RECEIVE_CURRENT_USER, current_user }
 }
 
-export const fetchCurrentUser = () => {
+export const fetchCurrentUser = (authToken) => {
+  myHeaders.append("Authorization", authToken)
   return dispatch => {
-    fetch(DOMAIN_URL + SESSION_URL)
+    fetch(DOMAIN_URL + SESSION_URL, {
+      headers: myHeaders
+    })
       .then((response) => response.json())
       .then((responseText) => {
         dispatch(receiveCurrentUser(responseText));
@@ -22,19 +42,9 @@ export const fetchCurrentUser = () => {
       });
   }
 }
-const myHeaders = new Headers ()
-var authToken;
-myHeaders.append("Content-Type", "application/json");
-myHeaders.append("Accept", "application/json");
-AsyncStorage.getItem('token')
-  .then((response) => {
-    authToken = response
-  } )
-  .then(() => {
-    myHeaders.append("Authorization", authToken);
-  })
 
 export const signIn = (credentials) => {
+  resetToken()
   return dispatch => {
     fetch(DOMAIN_URL + SESSION_URL, {
       method: 'POST',
@@ -54,7 +64,7 @@ export const signIn = (credentials) => {
 }
 
 export const signUp = (credentials) => {
-  console.log(credentials)
+  resetToken()
   return dispatch => {
     fetch(DOMAIN_URL + USERS_URL, {
       method: 'POST',
