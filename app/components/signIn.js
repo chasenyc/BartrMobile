@@ -3,7 +3,8 @@ import React, {
   TextInput,
   View,
   Text,
-  TouchableHighlight
+  TouchableHighlight,
+  AsyncStorage
 } from 'react-native';
 import styles from '../styles/styles'
 import { fetchCurrentUser } from '../actions/actionCreators'
@@ -33,7 +34,7 @@ export default class SignIn extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>BARTR</Text>
-
+        <Text style={styles.welcome}>{this.props.users}</Text>
         <View style={styles.columns}>
           <TextInput
             ref='UsernameInput'
@@ -70,7 +71,7 @@ export default class SignIn extends Component {
           <TouchableHighlight
             style={[styles.basicButton, styles.highlightButton]}
             underlayColor='#B71C1C'
-            onPress={this.signUp.bind(this)}>
+            onPress={this.props.fetchCurrentUser}>
             <Text style={styles.buttonText}>SIGN UP</Text>
           </TouchableHighlight>
         </View>

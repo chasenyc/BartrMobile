@@ -36,6 +36,7 @@ class App extends Component {
     } = this.props
 
     return (
+
       <Navigator
         initialRoute={{name: 'Sign In', index: 0}}
         renderScene={(route, navigator) =>
@@ -43,7 +44,9 @@ class App extends Component {
             {...this.state}
             signIn={actions.signIn}
             signUp={actions.signUp}
+            fetchCurrentUser={actions.fetchCurrentUser}
             name={route.name}
+            user={users}
             onForward={() => {
               var nextIndex = route.index + 1;
               navigator.push({
