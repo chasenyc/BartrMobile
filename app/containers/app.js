@@ -5,11 +5,13 @@ import React, {
   Text,
   View,
   Navigator,
+  TouchableHighlight,
   AsyncStorage
 } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actionCreators from '../actions/actionCreators'
+import styles from '../styles/styles'
 import SignIn from '../components/signIn'
 import Inventory from '../components/Inventory'
 
@@ -37,16 +39,18 @@ class App extends Component {
 
   componentWillReceiveProps() {
     this._getToken()
+
   }
 
   renderScene(route, nav) {
-    console.log(route)
     const {
       users, actions
     } = this.props
+    if (this._isLoggedIn() && route.id === 'Sign In') {
+      route.id = "Inventory"
+    }
      switch (route.id) {
         case "Sign In":
-        console.log('rendering signin')
           return(
             <SignIn
               {...this.state}
@@ -57,7 +61,6 @@ class App extends Component {
               navigator={nav}
             />)
         case "Inventory":
-        console.log('rendering inventory')
           return (
             <Inventory
               {...this.state}
@@ -71,12 +74,17 @@ class App extends Component {
     const {
       users, actions
     } = this.props
-
     return (
 
       <Navigator
         initialRoute={ {id: 'Sign In'} }
         renderScene={this.renderScene.bind(this)}
+        navigationBar={
+          <Navigator.NavigationBar
+            style={styles.navBar}
+            routeMapper={navMapper}
+          />
+        }
       />
     )
   }
@@ -88,7 +96,37 @@ class App extends Component {
     })
   }
 
+  _isLoggedIn() {
+    return !!this.props.users.id
+  }
 
+}
+
+let navMapper = {
+
+  LeftButton(route, nav, index, navState) {
+    if (index < 1) {
+      return null
+    } else {
+      return (
+        <TouchableHighlight
+          onPress={nav.pop}
+        >
+          <Text>Back</Text>
+        </TouchableHighlight>
+      )
+    }
+  },
+
+  RightButton(route, nav, index, navState) {
+    return null
+  },
+
+  Title(route, nav, index, navState) {
+    return (
+      <Text style={styles.navTitle}>{route.id}</Text>
+    )
+  }
 }
 
 const mapStateToProps = function(state) {

@@ -16,7 +16,9 @@ export default class Inventory extends Component {
 
   render() {
     return (
-        <View style={styles.container}>
+        <View
+          onSwipeBegin={ () => {console.log('test')} }
+          style={styles.container}>
           <Text style={styles.welcome}>Inventory</Text>
         </View>
     )
