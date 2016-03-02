@@ -27,7 +27,9 @@ class App extends Component {
     navigator.geolocation.getCurrentPosition(
       (location) => {
         this.setState({location: JSON.stringify(location)})
-      }
+      },
+      (error) => alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     )
     this._getToken()
   }
@@ -53,6 +55,7 @@ class App extends Component {
             fetchCurrentUser={actions.fetchCurrentUser}
             name={route.name}
             user={users}
+            navigator={navigator}
             onForward={() => {
               var nextIndex = route.index + 1;
               navigator.push({
