@@ -7,6 +7,20 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#E0F7FA',
   },
+  navBar: {
+    height: 50,
+    flexDirection: 'row',
+    backgroundColor: '#FFF',
+    borderBottomColor: '#CCC',
+    borderBottomWidth: 1,
+  },
+  navTitle: {
+    paddingTop: 5,
+    textAlign:'center',
+    fontWeight: 'bold',
+    color: '#666',
+    flex: 1
+  },
   welcome: {
     fontSize: 30,
     textAlign: 'center',

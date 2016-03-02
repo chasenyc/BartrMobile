@@ -32,7 +32,7 @@ export default class SignIn extends Component {
 
   fetchCurrentUser() {
     this.props.fetchCurrentUser(this.props.authToken)
-    this.props.navigator.push({id: "Inventory"});
+    this.props.navigator.resetTo({id: "Inventory"});
   }
 
   render() {
