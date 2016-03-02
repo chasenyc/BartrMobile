@@ -11,18 +11,6 @@ var authToken;
 myHeaders.append("Content-Type", "application/json");
 myHeaders.append("Accept", "application/json");
 
-const resetToken = () => {
-  AsyncStorage.getItem('token')
-  .then((response) => {
-    authToken = response
-  } )
-  .then(() => {
-    myHeaders.delete("Authorization")
-    myHeaders.append("Authorization", authToken);
-
-  })
-}
-
 const receiveCurrentUser = (current_user) => {
   return { type: RECEIVE_CURRENT_USER, current_user }
 }
@@ -44,7 +32,7 @@ export const fetchCurrentUser = (authToken) => {
 }
 
 export const signIn = (credentials) => {
-  resetToken()
+
   return dispatch => {
     fetch(DOMAIN_URL + SESSION_URL, {
       method: 'POST',
@@ -64,7 +52,7 @@ export const signIn = (credentials) => {
 }
 
 export const signUp = (credentials) => {
-  resetToken()
+
   return dispatch => {
     fetch(DOMAIN_URL + USERS_URL, {
       method: 'POST',
