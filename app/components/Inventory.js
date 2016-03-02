@@ -15,10 +15,9 @@ export default class Inventory extends Component {
   }
 
   render() {
-    debugger;
     return (
-        <View >
-        <Text>TEST</Text>
+        <View style={styles.container}>
+          <Text style={styles.welcome}>Inventory</Text>
         </View>
     )
   }

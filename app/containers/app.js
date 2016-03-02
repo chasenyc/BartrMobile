@@ -11,6 +11,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actionCreators from '../actions/actionCreators'
 import SignIn from '../components/signIn'
+import Inventory from '../components/Inventory'
 
 
 
@@ -27,13 +28,43 @@ class App extends Component {
     navigator.geolocation.getCurrentPosition(
       (location) => {
         this.setState({location: JSON.stringify(location)})
-      }
+      },
+      (error) => alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     )
     this._getToken()
   }
 
   componentWillReceiveProps() {
     this._getToken()
+  }
+
+  renderScene(route, nav) {
+    console.log(route)
+    const {
+      users, actions
+    } = this.props
+     switch (route.id) {
+        case "Sign In":
+        console.log('rendering signin')
+          return(
+            <SignIn
+              {...this.state}
+              signIn={actions.signIn}
+              signUp={actions.signUp}
+              fetchCurrentUser={actions.fetchCurrentUser}
+              user={users}
+              navigator={nav}
+            />)
+        case "Inventory":
+        console.log('rendering inventory')
+          return (
+            <Inventory
+              {...this.state}
+              user={users}
+              navigator={nav}
+            />)
+     }
   }
 
   render() {
@@ -44,29 +75,8 @@ class App extends Component {
     return (
 
       <Navigator
-        initialRoute={{name: 'Sign In', index: 0}}
-        renderScene={(route, navigator) =>
-          <SignIn
-            {...this.state}
-            signIn={actions.signIn}
-            signUp={actions.signUp}
-            fetchCurrentUser={actions.fetchCurrentUser}
-            name={route.name}
-            user={users}
-            onForward={() => {
-              var nextIndex = route.index + 1;
-              navigator.push({
-                name: 'Scene ' + nextIndex,
-                index: nextIndex,
-              });
-            }}
-            onBack={() => {
-              if (route.index > 0) {
-                navigator.pop();
-              }
-            }}
-          />
-        }
+        initialRoute={ {id: 'Sign In'} }
+        renderScene={this.renderScene.bind(this)}
       />
     )
   }
@@ -77,6 +87,8 @@ class App extends Component {
       this.setState({authToken: response})
     })
   }
+
+
 }
 
 const mapStateToProps = function(state) {
