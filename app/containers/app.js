@@ -38,6 +38,15 @@ class App extends Component {
     this._getToken()
   }
 
+  renderScene(route, nav) {
+     switch (route.id) {
+        case "Sign In":
+          return <SomeComponent navigator={nav}/>
+        case "SomeOtherComponent":
+          return <SomeOtherComponent navigator={nav}>
+     }
+  }
+
   render() {
     const {
       users, actions
@@ -80,6 +89,8 @@ class App extends Component {
       this.setState({authToken: response})
     })
   }
+
+
 }
 
 const mapStateToProps = function(state) {

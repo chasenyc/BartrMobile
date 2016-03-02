@@ -7,7 +7,6 @@ const USERS_URL = "/users"
 const SESSION_TOKEN = 'session_token'
 
 const myHeaders = new Headers ()
-var authToken;
 myHeaders.append("Content-Type", "application/json");
 myHeaders.append("Accept", "application/json");
 
