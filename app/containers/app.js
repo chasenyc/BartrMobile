@@ -27,13 +27,24 @@ class App extends Component {
     navigator.geolocation.getCurrentPosition(
       (location) => {
         this.setState({location: JSON.stringify(location)})
-      }
+      },
+      (error) => alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     )
     this._getToken()
   }
 
   componentWillReceiveProps() {
     this._getToken()
+  }
+
+  renderScene(route, nav) {
+     switch (route.id) {
+        case "Sign In":
+          return <SomeComponent navigator={nav}/>
+        case "SomeOtherComponent":
+          return <SomeOtherComponent navigator={nav}>
+     }
   }
 
   render() {
@@ -53,6 +64,7 @@ class App extends Component {
             fetchCurrentUser={actions.fetchCurrentUser}
             name={route.name}
             user={users}
+            navigator={navigator}
             onForward={() => {
               var nextIndex = route.index + 1;
               navigator.push({
@@ -77,6 +89,8 @@ class App extends Component {
       this.setState({authToken: response})
     })
   }
+
+
 }
 
 const mapStateToProps = function(state) {
